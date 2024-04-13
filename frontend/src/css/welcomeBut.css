@@ -1,0 +1,38 @@
+.motto{
+    color: var(--fuenteClaro, #474c5a);
+    margin: 2em 0 0;
+}
+
+.welcome-container button{
+    display: inline-flex;
+    padding: 1em 5em;
+    font-size: 1em;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    margin: 0 5vw;
+    background: #363D4E;
+}
+
+.welcome-container button:hover {
+    background-color: #262b36;
+}
+
+.welcome-container button.In{
+    margin-top: 53vh;
+    color: #FFF;
+    text-align: center;
+}
+
+.wRegister{
+    color: var(--fuenteClaro, #363D4E);
+    margin-top: 2vh;
+}
+
+.welcome-container button.Up{
+    color: #363D4E;
+    background: #FFFFFF;
+    margin-top: 1vh;
+}

@@ -1,0 +1,9 @@
+.desktop{
+    display: flex;
+}
+
+.categories_name{
+    margin-top: 2em;
+    margin-left: 1em;
+    font-size: 2em;
+}

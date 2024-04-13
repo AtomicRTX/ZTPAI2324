@@ -1,0 +1,39 @@
+.restaurant{
+    display: flex;
+    margin-top: 1em;
+    margin-left: 2em;
+    padding: 0.5em 0;
+    background-color: white;
+    margin-bottom: 1em;
+    line-height: 3em;
+    width: 70vw;
+    border: 3px solid black;
+}
+
+.restaurant > img {
+    align-self: center;
+    margin: 0 1em;
+    height: 70%;
+    width: 10%;
+    object-fit: fill;
+}
+
+.restaurant > .info{
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+    flex: 1;
+}
+
+.restaurant > .info > p{
+    margin-right: 1em;
+}
+
+.restaurant > .info > .r{
+    margin-right: 1em;
+}
+
+.restaurant > .info > .r > .fa-icon{
+    margin-right: 1em;
+    font-size: 1em;
+}

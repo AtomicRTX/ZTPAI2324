@@ -1,0 +1,28 @@
+header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1em 2em;
+}
+
+header > .search_bar{
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 0.5em 1em;
+}
+
+header > .search_bar > input{
+    border-radius: 1em;
+    background-color: #FFFFFF;
+    border: #FFFFFF;
+    width: 25em;
+    font-size: 1em;
+    padding: 0.7em;
+}
+
+header > .search_bar > .fa-icon {
+    position: absolute;
+    top: 50%;
+    right: 1em;
+    transform: translateY(-50%);
+}
