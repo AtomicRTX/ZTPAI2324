@@ -10,6 +10,8 @@ const ReservationPage = () => {
         <Navigation />
        <main>
           <SearchBar />
+          <p className="categories_name">My reservations</p>
+          <Reservation/>
        </main>
     </div>
   )

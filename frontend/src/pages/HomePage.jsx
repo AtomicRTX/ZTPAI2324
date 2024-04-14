@@ -15,6 +15,7 @@ const HomePage = () => {
           <Categories />
           <p className="categories_name">Top rated restaurants</p>
           <Restaurant />
+          <Restaurant />
        </main>
     </div>
   )

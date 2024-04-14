@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import '../css/reservation.css';
 
 const Reservation = ({reservation, userId, resId}) => {
   return (
@@ -27,14 +28,27 @@ const Reservation = ({reservation, userId, resId}) => {
 }
 
 Reservation.propTypes = {
-  reservation: PropTypes.object.isRequired,
-  userId: PropTypes.string,
-  resId: PropTypes.string,
+  reservation: PropTypes.shape({
+    getResLogo: PropTypes.func,
+    getResName: PropTypes.func,
+    getDate: PropTypes.func,
+    getHour: PropTypes.func,
+    getNumberPeople: PropTypes.func,
+    getUserId: PropTypes.func,
+    getResId: PropTypes.func,
+  }).isRequired,
 };
 
 Reservation.defaultProps = {
-  userId: '',
-  resId: '',
+  reservation: {
+    getResLogo: () => 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/1024px-Starbucks_Corporation_Logo_2011.svg.png',
+    getResName: () => 'Starbucks',
+    getDate: () => ({ format: () => '' }),
+    getHour: () => ({ format: () => '' }),
+    getNumberPeople: () => '5',
+    getUserId: () => '1',
+    getResId: () => '1',
+  },
 };
 
 export default Reservation;
