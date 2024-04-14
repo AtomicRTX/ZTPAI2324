@@ -7,7 +7,7 @@ import '../css/restaurant.css';
 
 const Restaurant = ({restaurant}) => {
   return (
-      <Link to={`/restaurant_details/id=${restaurant.resId}`}>
+      <Link to={`/restaurantPage/id=${restaurant.resId}`}>
           <div className="restaurant" id={restaurant.resId}>
             <img src={restaurant.resLogo} alt="RESTAURANT LOGO"/>
             <div className="info">
