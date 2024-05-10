@@ -8,4 +8,6 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Integer> {
     @Override
     Optional<User> findById(Integer id);
+
+    Optional<User> findByEmail(String email);
 }
