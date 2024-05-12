@@ -5,18 +5,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp } from '@fortawesome/free-regular-svg-icons';
 import '../css/restaurant.css';
 
+
 const Restaurant = ({restaurant}) => {
+
   return (
-      <Link to={`/restaurantPage/id=${restaurant.resId}`}>
-          <div className="restaurant" id={restaurant.resId}>
-            <img src={restaurant.resLogo} alt="RESTAURANT LOGO"/>
+      <Link to={`/restaurantPage/${restaurant.res_id}`}>
+          <div className="restaurant" id={restaurant.res_id}>
+            <img src={restaurant.res_logo} alt="RESTAURANT LOGO"/>
             <div className="info">
               <div className="infoB">
-                <p className="n">{restaurant.resName}</p>
-                <p className="l">{restaurant.resLocation}</p>
+                <p className="n">{restaurant.res_name}</p>
+                <p className="l">{restaurant.res_location}</p>
               </div>
               <div className="r">
-                <FontAwesomeIcon  className="fa-icon" icon={faThumbsUp} /> {restaurant.resLike}
+                <FontAwesomeIcon  className="fa-icon" icon={faThumbsUp} /> {restaurant.res_like}
               </div>
             </div>
           </div>

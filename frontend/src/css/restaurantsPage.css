@@ -1,0 +1,8 @@
+.desktop{
+    display: flex;
+}
+
+.ma > .ra{
+    overflow-y: auto;
+    max-height: 80vh;
+}

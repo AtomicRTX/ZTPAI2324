@@ -49,7 +49,8 @@ render() {
               <Route path={'/reservationPage'} element={<ReservationPage/>}/>   
               <Route path={'/restaurantPage'} element={<RestaurantsPage/>}/>    
               <Route path={'/profilePage'} element={<ProfilePage/>}/>
-              <Route path={'/restaurantPage/id=1'} element={<RestaurantPage/>}/> 
+              <Route path={'/restaurantPage/id=1'} element={<RestaurantPage/>}/>
+              <Route path={'/logout'} element={<WelcomePage/>}/>
           </Routes>
       </>
   );

@@ -1,6 +1,8 @@
 package kubacki.dawid.ReservEat.config;
 
 import kubacki.dawid.ReservEat.repository.UserRepository;
+import kubacki.dawid.ReservEat.service.RestaurantService;
+import kubacki.dawid.ReservEat.service.impl.RestaurantServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

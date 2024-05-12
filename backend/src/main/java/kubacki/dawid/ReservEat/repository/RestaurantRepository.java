@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface RestaurantRepository extends JpaRepository<Restaurant, Integer> {
 
-    @Query("SELECT r FROM Restaurant r")
-    List<Restaurant> findRestaurants();
+    @Query("SELECT r FROM Restaurant r ORDER BY r.res_like DESC LIMIT 2")
+    List<Restaurant> findBestRestaurants();
 
 }
