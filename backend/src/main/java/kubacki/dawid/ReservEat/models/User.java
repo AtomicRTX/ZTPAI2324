@@ -37,7 +37,7 @@ public class User implements UserDetails {
     @Column(unique=true, nullable = false)
     private String email;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_types",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -48,7 +48,9 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return types.stream().map(t -> new SimpleGrantedAuthority(t.getName())).toList();
+        return types.stream()
+                .map(t -> new SimpleGrantedAuthority(t.getName()))
+                .toList();
     }
 
     @Override

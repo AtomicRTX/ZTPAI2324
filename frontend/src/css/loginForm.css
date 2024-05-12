@@ -3,27 +3,28 @@
     margin-top: 1em;
 }
 
-.login-container form {
+.login-container Form {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.login-container input{
+.login-container Form .form-control{
     height: 4vh;
+    width: 25em;
     background: var(--grisClaro, #F3F3F3);
-    margin: 0 5vw 1vh;
+    margin: 0 5em 1vh;
     text-align: inherit;
 }
 
-.login-container button{
+.login-container button, .login-container .registerLink button{
     padding: 1em 5em;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
     font-size: 1em;
-    margin: 0 5em;
+    margin: 0 5em 1vh;
     background: #363D4E;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.10);
 }
@@ -34,6 +35,9 @@
 
 .login-container button.In{
     margin-top: 3vh;
+    margin-left: 5.6em;
+    height: 5vh;
+    width: 20em;
     color: #FFF;
     text-align: center;
 }
@@ -43,8 +47,15 @@
     margin-top: 45vh;
 }
 
+.login-container .registerLink{
+    all: unset;
+}
+
 .login-container button.Up{
     color: #363D4E;
+    
+    height: 5vh;
+    width: 20em;
     background: #FFFFFF;
     margin-top: 1vh;
 }

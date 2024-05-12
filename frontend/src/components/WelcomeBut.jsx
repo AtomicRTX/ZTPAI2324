@@ -7,13 +7,13 @@ const WelcomeBut = () => {
     <div>
         <div className="motto">Your Culinary Journey Begins Here: Reserve, Savor, Repeat!</div>
         <div className="welcome-container">
-            <Link to="/loginPage">
+            <Link to="/loginPage" className='loginLink'>
                 <button className="In">Sign in</button>
             </Link>
             <div className="wRegister">
                 <p>You don't have an account ?</p>
             </div>
-            <Link to="/registerPage">
+            <Link to="/registerPage" className='registerLink'>
                 <button className="Up">Sign up</button>
             </Link>
         </div>

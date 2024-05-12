@@ -3,33 +3,28 @@
     margin-top: 1em;
 }
 
-.register-container form {
+.register-container Form {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.register-container input{
+.register-container Form .form-group .form-control{
     height: 4vh;
+    width: 25em;
     background: var(--grisClaro, #F3F3F3);
-    margin: 0 6em 0.5vw;
+    margin: 0 5em 0.5vw;
     text-align: inherit;
 }
 
-.no-valid {
-    border: 3px solid red;
-    box-shadow: 0 0 0.2em red;
-    outline: none;
-}
-
-.register-container button{
+.register-container button, .register-container .loginLink button{
     padding: 1em 5em;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
     font-size: 1em;
-    margin: 0 5em;
+    margin: 0 5em 0.5vw;
     background: #363D4E;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.10);
 }
@@ -40,18 +35,25 @@
 
 .register-container button.Up{
     margin-top: 3vh;
+    height: 5vh;
+    width: 20em;
     color: #FFF;
     text-align: center;
 }
     
 .loginr{
     color: var(--fuenteClaro, #363D4E);
-    margin-top: 25.3vh;
+    margin-top: 29.3vh;
+}
+
+.register-container .loginLink{
+    all: unset;
 }
 
 .register-container button.In{
     color: #363D4E;
-
+    height: 5vh;
+    width: 20em;
     background: #FFFFFF;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.10);
 

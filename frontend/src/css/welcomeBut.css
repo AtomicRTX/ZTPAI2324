@@ -2,7 +2,9 @@
     color: var(--fuenteClaro, #474c5a);
     margin: 2em 0 0;
 }
-
+.welcome-container .loginLink, .welcome-container .registerLink{
+    all: unset;
+}
 .welcome-container button{
     display: inline-flex;
     padding: 1em 5em;
@@ -12,7 +14,7 @@
     align-items: center;
     gap: 10px;
 
-    margin: 0 5vw;
+    margin: 0 5em;
     background: #363D4E;
 }
 
@@ -24,6 +26,8 @@
     margin-top: 53vh;
     color: #FFF;
     text-align: center;
+    height: 5vh;
+    width: 20em;
 }
 
 .wRegister{
@@ -35,4 +39,6 @@
     color: #363D4E;
     background: #FFFFFF;
     margin-top: 1vh;
+    height: 5vh;
+    width: 20em;
 }
