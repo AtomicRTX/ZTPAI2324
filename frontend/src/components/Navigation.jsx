@@ -5,7 +5,14 @@ import '../css/navigation.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faCalendar, faUtensils, faHouseChimney, faArrowRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons'
 
+import AuthService from "../services/auth.service";
+
 const Navigation = ({userName, userSurname, userEmail}) => {
+    
+    const logOut = () =>{
+        AuthService.logout();
+    }
+    
     return (
     <nav>
             <div className="logo">
@@ -44,10 +51,10 @@ const Navigation = ({userName, userSurname, userEmail}) => {
                     </Link>
                 </li>
                 <li className='home'>
-                    <Link to="/logout" className="button">
+                    <a href="/" className="button" onClick={logOut}>
                         <FontAwesomeIcon className="fa-icon" icon={faArrowRightFromBracket} />
                         Sign out
-                    </Link>
+                    </a>
                 </li>
                 <div className="userID">
                     {userName} {userSurname}

@@ -11,6 +11,8 @@ import RegisterPage from './pages/RegisterPage';
 import RestaurantPage from './pages/RestaurantPage';
 
 import AuthService from "./services/auth.service";
+import Logged from "./routes/Logged";
+import Unlogged from "./routes/Unlogged";
 
 class App extends Component {
     constructor(props) {
@@ -42,16 +44,20 @@ render() {
   return (
       <>
           <Routes>
-              <Route path={'/'} element={<WelcomePage/>}/>
-              <Route path={'/loginPage'} element={<LoginPage/>}/>
-              <Route path={'/registerPage'} element={<RegisterPage/>}/>    
-              <Route path={'/homePage'} element={<HomePage/>}/>
-              <Route path={'/reservationPage'} element={<ReservationPage/>}/>   
-              <Route path={'/restaurantPage'} element={<RestaurantsPage/>}/>    
-              <Route path={'/profilePage'} element={<ProfilePage/>}/>
-              <Route path={'/restaurantPage/id=1'} element={<RestaurantPage/>}/>
-              <Route path={'/logout'} element={<WelcomePage/>}/>
+            <Route element={<Logged/>}>
+                <Route path={'/homePage'} element={<HomePage/>}/>
+                <Route path={'/reservationPage'} element={<ReservationPage/>}/>   
+                <Route path={'/restaurantPage'} element={<RestaurantsPage/>}/>    
+                <Route path={'/profilePage'} element={<ProfilePage/>}/>
+                <Route path={'/restaurantPage/id=1'} element={<RestaurantPage/>}/>
+            </Route>
+            <Route element={<Unlogged/>}>
+                <Route path={'/'} element={<WelcomePage/>}/>
+                <Route path={'/loginPage'} element={<LoginPage/>}/>
+                <Route path={'/registerPage'} element={<RegisterPage/>}/>    
+            </Route>
           </Routes>
+
       </>
   );
 }

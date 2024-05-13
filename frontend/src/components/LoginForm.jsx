@@ -7,7 +7,7 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 
 import AuthService from "../services/auth.service";
-import { withRouter } from '../common/with-router';
+import { withRouter } from '../routes/with-router';
 
   class LoginForm extends Component {
     constructor(props) {
