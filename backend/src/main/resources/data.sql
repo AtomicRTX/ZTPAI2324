@@ -1,7 +1,14 @@
 INSERT INTO categories (category_name) VALUES
-                                           ('Fast Food'),
-                                           ('Włoska'),
-                                           ('Japońska');
+                                           ('italian'),
+                                           ('indian'),
+                                           ('sushi'),
+                                           ('mexican'),
+                                           ('thai'),
+                                           ('vietnamese'),
+                                           ('seafood'),
+                                           ('chinese'),
+                                           ('burgers'),
+                                           ('vegetarian');
 
 INSERT INTO restaurants (end_hour, res_like, start_hour, res_d, res_image, res_location, res_logo, res_name) VALUES
                                                                                                                  ('22:00:00', 120, '10:00:00', 'An unpretentious restaurant specializing in burgers, steaks, seafood, original meat dishes and wine.', 'https://visitmalopolska.pl/documents/20194/2407893/Wn%C4%99trze+Restauracja+Karakter+Krak%C3%B3w/7f3a846d-eb29-4649-9c5b-8ce596cb136b?t=1646222021501&imageThumbnail=5', 'Brzozowa 17, 31-050 Kraków', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhnBUwuTueRMldciF13hqx6ErhagXmW5MOqJzyQZp0_A&s', 'Karakter'),
@@ -12,9 +19,17 @@ INSERT INTO restaurants (end_hour, res_like, start_hour, res_d, res_image, res_l
 
 INSERT INTO restaurants_categories (category_id, res_id) VALUES
                                                              (1, 1),
+                                                             (2, 1),
+                                                             (3, 1),
+                                                             (4, 1),
+                                                             (5, 1),
+                                                             (6, 1),
+                                                             (7, 1),
+                                                             (8, 1),
+                                                             (9, 1),
                                                              (2, 2),
                                                              (3, 3),
-                                                             (1, 3),
+                                                             (10, 3),
                                                              (2, 5);
 
 INSERT INTO types (name) VALUES

@@ -44,4 +44,11 @@ public class RestaurantServiceImpl implements RestaurantService {
         List<Restaurant> bestRestaurants = restaurantRepository.findBestRestaurants();
         return bestRestaurants.stream().map((restaurant -> RestaurantMapper.mapToRestaurantDto(restaurant))).collect(Collectors.toList());
     }
+
+    @Override
+    public List<RestaurantDto> getRestaurantsByCategory(String categoryName) {
+        List<Restaurant> catRestaurants = restaurantRepository.findRestaurantsByCategory(categoryName);
+        return catRestaurants.stream().map((restaurant -> RestaurantMapper.mapToRestaurantDto(restaurant))).collect(Collectors.toList());
+    }
+
 }

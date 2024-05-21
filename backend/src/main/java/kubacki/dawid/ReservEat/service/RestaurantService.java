@@ -12,4 +12,5 @@ public interface RestaurantService {
     List<RestaurantDto> getAllRestaurants();
 
     List<RestaurantDto> getBestRestaurants();
+    List<RestaurantDto> getRestaurantsByCategory(String categoryName);
 }

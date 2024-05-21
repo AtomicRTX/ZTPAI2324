@@ -43,5 +43,11 @@ public class RestaurantController {
         return ResponseEntity.ok(bestRestaurantDtos);
     }
 
+    @GetMapping("/category")
+    public ResponseEntity<List<RestaurantDto>> getRestaurantsByCategory(@RequestParam("category") String categoryName) {
+        List<RestaurantDto> catRestaurantDtos = restaurantService.getRestaurantsByCategory(categoryName);
+        return ResponseEntity.ok(catRestaurantDtos);
+    }
+
 
 }

@@ -6,16 +6,16 @@ import Category from './Category'
 
 const Categories = () => {
   const categories = [
-    { url: "/categories_page?cat=italian", name: "Italian", image: "../../img/category/pizza.svg" },
-    { url: "/categories_page?cat=indian", name: "Indian", image: "../../img/category/indian.svg" },
-    { url: "/categories_page?cat=sushi", name: "Sushi", image: "../../img/category/sushi.svg" },
-    { url: "/categories_page?cat=mexican", name: "Mexican", image: "../../img/category/mexican.svg" },
-    { url: "/categories_page?cat=thai", name: "Thai", image: "../../img/category/thai.svg" },
-    { url: "/categories_page?cat=vietnamese", name: "Vietnamese", image: "../../img/category/vietnamese.svg" },
-    { url: "/categories_page?cat=seafood", name: "Seafood", image: "../../img/category/seafood.svg" },
-    { url: "/categories_page?cat=chinese", name: "Chinese", image: "../../img/category/chinese.svg" },
-    { url: "/categories_page?cat=burgers", name: "Burgers", image: "../../img/category/burgers.svg" },
-    { url: "/categories_page?cat=vegetarian", name: "Vegetarian", image: "../../img/category/vegetarian.svg" }
+    { url: "/categoryPage/italian", name: "Italian", image: "../../img/category/pizza.svg" },
+    { url: "/categoryPage/indian", name: "Indian", image: "../../img/category/indian.svg" },
+    { url: "/categoryPage/sushi", name: "Sushi", image: "../../img/category/sushi.svg" },
+    { url: "/categoryPage/mexican", name: "Mexican", image: "../../img/category/mexican.svg" },
+    { url: "/categoryPage/thai", name: "Thai", image: "../../img/category/thai.svg" },
+    { url: "/categoryPage/vietnamese", name: "Vietnamese", image: "../../img/category/vietnamese.svg" },
+    { url: "/categoryPage/seafood", name: "Seafood", image: "../../img/category/seafood.svg" },
+    { url: "/categoryPage/chinese", name: "Chinese", image: "../../img/category/chinese.svg" },
+    { url: "/categoryPage/burgers", name: "Burgers", image: "../../img/category/burgers.svg" },
+    { url: "/categoryPage/vegetarian", name: "Vegetarian", image: "../../img/category/vegetarian.svg" }
   ];
 
   return (

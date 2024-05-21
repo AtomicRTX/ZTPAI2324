@@ -9,6 +9,7 @@ import WelcomePage from './pages/WelcomePage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import RestaurantPage from './pages/RestaurantPage';
+import CategoryPage from './pages/CategoryPage';
 
 import AuthService from "./services/auth.service";
 import Logged from "./routes/Logged";
@@ -50,6 +51,7 @@ render() {
                 <Route path={'/restaurantPage'} element={<RestaurantsPage/>}/>    
                 <Route path={'/profilePage'} element={<ProfilePage/>}/>
                 <Route path={'/restaurantPage/id=1'} element={<RestaurantPage/>}/>
+                <Route path={'/categoryPage/:categoryName'} element={<CategoryPage/>} />
             </Route>
             <Route element={<Unlogged/>}>
                 <Route path={'/'} element={<WelcomePage/>}/>
