@@ -6,10 +6,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Data
@@ -81,5 +79,13 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public User(int user_id, String name, String surname, String email, String password) {
+        this.user_id = user_id;
+        this.name = name;
+        this.surname = surname;
+        this.password = password;
+        this.email = email;
     }
 }

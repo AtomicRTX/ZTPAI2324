@@ -1,15 +1,13 @@
 package kubacki.dawid.ReservEat.controllers;
 
-import kubacki.dawid.ReservEat.models.Restaurant;
-import kubacki.dawid.ReservEat.models.User;
-import kubacki.dawid.ReservEat.repository.UserRepository;
+import kubacki.dawid.ReservEat.dto.UserDto;
+import kubacki.dawid.ReservEat.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/user")
@@ -18,6 +16,13 @@ import java.util.List;
 
 public class UserController {
 
-    private final UserRepository userRepository;
+    @Autowired
+    private UserService userService;
 
+    @GetMapping("/current")
+    public ResponseEntity<UserDto> getCurrentUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserDto userDto = userService.getByEmail(auth.getName());
+        return ResponseEntity.ok(userDto);
+    }
 }

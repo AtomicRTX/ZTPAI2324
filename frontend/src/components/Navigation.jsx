@@ -1,14 +1,27 @@
-import React from 'react'
-import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../css/navigation.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faCalendar, faUtensils, faHouseChimney, faArrowRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons'
 
+import authHeader from '../services/auth-header';
 import AuthService from "../services/auth.service";
 
-const Navigation = ({userName, userSurname, userEmail}) => {
-    
+const Navigation = () => {
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+      axios.get('http://localhost:8080/api/v1/user/current', { headers: authHeader() })
+        .then(response => {
+          setUser(response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching user:', error);
+        });
+    }, []);
+
+
     const logOut = () =>{
         AuthService.logout();
     }
@@ -57,24 +70,12 @@ const Navigation = ({userName, userSurname, userEmail}) => {
                     </a>
                 </li>
                 <div className="userID">
-                    {userName} {userSurname}
-                    <p>{userEmail}</p>
+                    {user.name} {user.surname}
+                    <p>{user.email}</p>
                 </div>
             </ul>
         </nav>
   )
 }
-
-Navigation.propTypes = {
-  userName: PropTypes.string,
-  userSurname: PropTypes.string,
-  userEmail: PropTypes.string
-};
-
-Navigation.defaultProps = {
-  userName: 'Dawid',
-  userSurname: 'Kubacki',
-  userEmail: 'dawid.kubacki@gmail.com'
-};
 
 export default Navigation
