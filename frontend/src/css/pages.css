@@ -2,6 +2,11 @@
     display: flex;
 }
 
+main{
+    width: calc(100vw - 290px);
+    height: 100vh;
+}
+
 .categories_name{
     margin-top: 2em;
     margin-left: 1em;

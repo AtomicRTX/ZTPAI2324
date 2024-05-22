@@ -7,7 +7,7 @@
 
     flex-shrink: 0;
     overflow-x: auto;
-    max-height: 66vh;
+    max-width: 70vw;
 }
 .categories a{
     margin: 1em 1em;

@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import '../css/profileInfo.css';
 
-const ProfileInfo = ({ userName, userSurname, userEmail, userPhone }) => {
+import authHeader from '../services/auth-header';
+
+const ProfileInfo = () => {
+  const [user, setUser] = useState({});
+
+    useEffect(() => {
+      axios.get('http://localhost:8080/api/v1/user/current', { headers: authHeader() })
+        .then(response => {
+          setUser(response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching user:', error);
+        });
+    }, []);
+
   return (
     <div className="profile">
       <div className="my">
@@ -20,37 +35,24 @@ const ProfileInfo = ({ userName, userSurname, userEmail, userPhone }) => {
       <div className="basicInformation">
         <div className="data">
           <div>
-            Name: {userName}
+            Name: {user.name}
           </div>
           <div>
-            Surname: {userSurname}
+            Surname: {user.surname}
           </div>
           <div>
-            E-mail: {userEmail}
+            E-mail: {user.email}
           </div>
           <div>
-            Phone number: {userPhone}
+            Phone number: {user.phone ? user.phone : "Nie podany"}
           </div>
         </div>
         <div className="photo">
+            <img src={user.photo ? user.photo : "https://bi.im-g.pl/im/5e/7e/1b/z28830814Q,Amou-Hadzi-na-co-dzien-zyje-w-Dejgah-w-Iranie.jpg"} alt="Opis obrazka" />
         </div>
       </div>
     </div>
   )
 }
-
-ProfileInfo.propTypes = {
-  userName: PropTypes.string,
-  userSurname: PropTypes.string,
-  userEmail: PropTypes.string,
-  userPhone: PropTypes.string,
-};
-
-ProfileInfo.defaultProps = {
-  userName: 'Unknown',
-  userSurname: 'Unknown',
-  userEmail: 'Unknown',
-  userPhone: 'Unknown',
-};
 
 export default ProfileInfo;

@@ -29,8 +29,8 @@ public class Restaurant {
     @Column()
     private String res_logo;
 
-    @Column()
-    private String res_image;
+    @Column(columnDefinition = "TEXT")
+    private String res_map;
 
     @Column()
     private String res_d;
@@ -52,12 +52,12 @@ public class Restaurant {
     )
     private Set<Category> categories = new HashSet<>();
 
-    public Restaurant(int resId, String resName, String resLocation, String resLogo, String resImage, String resD, int resLike, LocalTime startHour, LocalTime endHour) {
+    public Restaurant(int resId, String resName, String resLocation, String resLogo, String resMap, String resD, int resLike, LocalTime startHour, LocalTime endHour) {
         this.res_id = resId;
         this.res_name = resName;
         this.res_location = resLocation;
         this.res_logo = resLogo;
-        this.res_image = resImage;
+        this.res_map = resMap;
         this.res_d = resD;
         this.res_like = resLike;
         this.start_hour = startHour;

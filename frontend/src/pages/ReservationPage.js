@@ -1,7 +1,7 @@
 import React from 'react'
 import Navigation from '../components/Navigation';
 import SearchBar from '../components/SearchBar';
-import '../css/homePage.css';
+import '../css/pages.css';
 import Reservation from '../components/Reservation';
 
 const ReservationPage = () => {

@@ -35,6 +35,12 @@ public class User implements UserDetails {
     @Column(unique=true, nullable = false)
     private String email;
 
+    @Column(nullable = true)
+    private String phone;
+
+    @Column(nullable = true)
+    private String photo;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_types",
@@ -81,11 +87,13 @@ public class User implements UserDetails {
         return true;
     }
 
-    public User(int user_id, String name, String surname, String email, String password) {
+    public User(int user_id, String name, String surname, String email, String password, String phone, String photo) {
         this.user_id = user_id;
         this.name = name;
         this.surname = surname;
         this.password = password;
         this.email = email;
+        this.phone = phone;
+        this.photo = photo;
     }
 }

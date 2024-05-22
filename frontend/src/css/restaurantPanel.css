@@ -1,0 +1,85 @@
+.restaurantPan {
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.restaurantPan::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 290px;
+    width: calc(100vw - 290px);
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+
+ .rectangle {
+    background-color: rgba(255, 255, 255, 1);
+    padding: 20px;
+    margin: 5vw;
+    border-radius: 1em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100vw;
+    height: 90vh;
+    z-index: 2;
+  }
+  .rectangle > img{
+    align-self: center;
+    margin: 0.5em 1em;
+    height: 10%;
+    object-fit: fill;
+  }
+  
+  .rectangle p {
+    margin: 0;
+  }
+
+  .rectangle > .resName{
+      margin: 1em;
+  }
+
+  .rectangle > .resD{
+    margin: 3em 1em;
+  }
+
+  .rectangle > .resLoc{
+    margin: 3em 1em 2em;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  .rectangle > .formReserv{
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    margin: 1em 1em 0.5em;
+    font-size: 1.3em;
+  }
+
+  select, .datePicker{
+    justify-content: center;
+    padding: 1em;
+    margin: 2em 5em;
+}

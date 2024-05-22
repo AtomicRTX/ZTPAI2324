@@ -50,7 +50,7 @@ render() {
                 <Route path={'/reservationPage'} element={<ReservationPage/>}/>   
                 <Route path={'/restaurantPage'} element={<RestaurantsPage/>}/>    
                 <Route path={'/profilePage'} element={<ProfilePage/>}/>
-                <Route path={'/restaurantPage/id=1'} element={<RestaurantPage/>}/>
+                <Route path={'/restaurantPage/:restaurantID'} element={<RestaurantPage/>}/>
                 <Route path={'/categoryPage/:categoryName'} element={<CategoryPage/>} />
             </Route>
             <Route element={<Unlogged/>}>

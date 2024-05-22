@@ -21,7 +21,7 @@ public class RestaurantDto {
     private String res_name;
     private String res_location;
     private String res_logo;
-    private String res_image;
+    private String res_map;
     private String res_d;
     private int res_like;
     private LocalTime start_hour;

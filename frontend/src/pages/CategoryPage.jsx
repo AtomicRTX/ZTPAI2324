@@ -4,8 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import Navigation from '../components/Navigation';
 import SearchBar from '../components/SearchBar';
-import '../css/homePage.css';
-import Restaurant from '../components/Restaurant';
+import '../css/pages.css';
 import RestaurantList from '../components/RestaurantList';
 import authHeader from '../services/auth-header';
 

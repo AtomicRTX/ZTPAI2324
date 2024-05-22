@@ -7,7 +7,7 @@ import Categories from '../components/Categories';
 import RestaurantList from '../components/RestaurantList';
 import authHeader from '../services/auth-header';
 
-import '../css/homePage.css';
+import '../css/pages.css';
 
 const HomePage = () => {
     const [restaurants, setRestaurants] = useState([]);
@@ -26,7 +26,7 @@ const HomePage = () => {
   return (
     <div className="desktop">
        <Navigation />
-       <main>
+       <main className=''>
           <SearchBar />
           <p className="categories_name">Categories</p>
           <Categories />

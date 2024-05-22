@@ -42,3 +42,15 @@
 .profile .basicInformation .data div{
     margin-bottom: 1em;
 }
+
+main > .profile .basicInformation .photo{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10em;
+    align-items: center;
+}
+
+main > .profile .basicInformation .photo img{
+    width: 200px;
+    height: 220px;
+}
