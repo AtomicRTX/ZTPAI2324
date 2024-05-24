@@ -14,6 +14,20 @@ class ReservationService {
             number_of_people
         }, { headers: authHeader() });
     }
+
+    getActualReservations() {
+        return axios.get(API_URL + 'actual', { headers: authHeader() })
+            .then(response => {
+                return response.data;
+        })
+    }
+
+    getPastReservations() {
+            return axios.get(API_URL + 'past', { headers: authHeader() })
+                .then(response => {
+                    return response.data;
+            })
+        }
 }
 
 export default new ReservationService();

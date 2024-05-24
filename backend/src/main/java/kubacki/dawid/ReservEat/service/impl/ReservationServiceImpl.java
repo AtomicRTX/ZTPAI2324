@@ -12,7 +12,9 @@ import kubacki.dawid.ReservEat.service.ReservationService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -38,5 +40,17 @@ public class ReservationServiceImpl implements ReservationService {
                 .build();
         Reservation savedReservation = reservationRepository.save(reservation);
         return ReservationMapper.mapToReservationRequest(savedReservation);
+    }
+
+    @Override
+    public List<ReservationRequest> getActualReservations(int user_id){
+        List<Reservation> reservations = reservationRepository.findActualReservations(user_id);
+        return reservations.stream().map((reservation -> ReservationMapper.mapToReservationRequest(reservation))).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ReservationRequest> getPastReservations(int user_id){
+        List<Reservation> reservations = reservationRepository.findPastReservations(user_id);
+        return reservations.stream().map((reservation -> ReservationMapper.mapToReservationRequest(reservation))).collect(Collectors.toList());
     }
 }
