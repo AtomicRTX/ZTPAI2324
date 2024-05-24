@@ -1,24 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../css/navigation.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faCalendar, faUtensils, faHouseChimney, faArrowRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons'
 
-import authHeader from '../services/auth-header';
 import AuthService from "../services/auth.service";
+import UserService from '../services/user.service';
 
 const Navigation = () => {
     const [user, setUser] = useState({});
 
     useEffect(() => {
-      axios.get('http://localhost:8080/api/v1/user/current', { headers: authHeader() })
-        .then(response => {
-          setUser(response.data);
-        })
-        .catch(error => {
-          console.error('Error fetching user:', error);
-        });
+      UserService.getUser()
+        .then(data => setUser(data)
+        )
+        .catch(error => console.error('Error:', error));
     }, []);
 
 

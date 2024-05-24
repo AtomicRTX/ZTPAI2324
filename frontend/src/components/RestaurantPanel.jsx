@@ -1,23 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import '../css/restaurantPanel.css';
 
-import authHeader from '../services/auth-header';
+import RestaurantService from '../services/restaurant.service';
 
 const RestaurantPanel = () => {
     const [restaurant, setRestaurant] = useState({});
     const { restaurantID } = useParams();
 
     useEffect(() => {
-      axios.get(`http://localhost:8080/api/v1/restaurant/${restaurantID}`, { headers: authHeader() })
-        .then(response => {
-          setRestaurant(response.data);
-        })
-        .catch(error => {
-          console.error('Error fetching restaurant:', error);
-        });
-    }, []);
+      RestaurantService.getRestaurant(restaurantID)
+      .then(data => setRestaurant(data))
+      .catch(error => console.error('Error:', error));
+    }, [restaurantID]);
+
     useEffect(() => {
       const selectTime = document.getElementById('selectTime');
 

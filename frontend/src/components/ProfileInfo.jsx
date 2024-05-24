@@ -1,22 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import PropTypes from 'prop-types';
 import '../css/profileInfo.css';
 
-import authHeader from '../services/auth-header';
+import UserService from '../services/user.service';
 
 const ProfileInfo = () => {
   const [user, setUser] = useState({});
 
-    useEffect(() => {
-      axios.get('http://localhost:8080/api/v1/user/current', { headers: authHeader() })
-        .then(response => {
-          setUser(response.data);
-        })
-        .catch(error => {
-          console.error('Error fetching user:', error);
-        });
-    }, []);
+  useEffect(() => {
+    UserService.getUser()
+      .then(data => setUser(data)
+      )
+      .catch(error => console.error('Error:', error));
+  }, []);
 
   return (
     <div className="profile">
