@@ -1,12 +1,17 @@
 package kubacki.dawid.ReservEat.models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+@Data
+@Builder
 @Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "reservation")
 
