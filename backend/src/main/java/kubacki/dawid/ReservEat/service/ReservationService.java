@@ -9,4 +9,5 @@ public interface ReservationService {
     ReservationRequest makeReservation(ReservationRequest reservationRequest);
     List<ReservationRequest> getActualReservations(int user_id);
     List<ReservationRequest> getPastReservations(int user_id);
+    ReservationRequest cancelReservation(int reserv_id);
 }

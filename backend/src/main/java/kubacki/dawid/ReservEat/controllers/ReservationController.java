@@ -28,6 +28,12 @@ public class ReservationController {
         return new ResponseEntity<>(savedReservation, HttpStatus.CREATED);
     }
 
+    @PostMapping("/cancel")
+    public ResponseEntity<ReservationRequest> deleteReservation(@RequestBody ReservationRequest reservationRequest) {
+        reservationService.cancelReservation(reservationRequest.getReserv_id());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @GetMapping("/actual")
     public ResponseEntity<List<ReservationRequest>> getActualReservations() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

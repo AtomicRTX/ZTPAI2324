@@ -2,7 +2,6 @@ package kubacki.dawid.ReservEat.service.impl;
 
 import kubacki.dawid.ReservEat.dto.ReservationRequest;
 import kubacki.dawid.ReservEat.mapper.ReservationMapper;
-import kubacki.dawid.ReservEat.mapper.UserMapper;
 import kubacki.dawid.ReservEat.models.Reservation;
 import kubacki.dawid.ReservEat.repository.ReservationRepository;
 import kubacki.dawid.ReservEat.repository.RestaurantRepository;
@@ -14,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,6 +40,19 @@ public class ReservationServiceImpl implements ReservationService {
                 .build();
         Reservation savedReservation = reservationRepository.save(reservation);
         return ReservationMapper.mapToReservationRequest(savedReservation);
+    }
+
+    @Override
+    public ReservationRequest cancelReservation(int reserv_id){
+        Optional<Reservation> reservationOptional = reservationRepository.findById(reserv_id);
+        if(reservationOptional.isPresent()){
+            Reservation reservation = reservationOptional.get();
+            reservationRepository.delete(reservation);
+        }
+        else {
+            throw new NoSuchElementException();
+        }
+        return null;
     }
 
     @Override
