@@ -4,4 +4,5 @@ import kubacki.dawid.ReservEat.dto.UserDto;
 
 public interface UserService {
     UserDto getByEmail(String email);
+    void updateUser(UserDto userDto);
 }

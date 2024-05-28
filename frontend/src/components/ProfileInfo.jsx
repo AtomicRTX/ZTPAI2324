@@ -1,51 +1,66 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../css/profileInfo.css';
 
 import UserService from '../services/user.service';
 
 const ProfileInfo = () => {
-  const [user, setUser] = useState({});
 
-  useEffect(() => {
-    UserService.getUser()
-      .then(data => setUser(data)
-      )
-      .catch(error => console.error('Error:', error));
-  }, []);
+    const [user, setUser] = useState({});
+    const navigate = useNavigate();
 
+    useEffect(() => {
+        UserService.getUser()
+            .then(data => setUser(data))
+            .catch(error => console.error('Error:', error));
+    }, []);
+
+    const handleEditProfile = () => {
+      navigate('/editPage');
+    };
   return (
     <div className="profile">
-      <div className="my">
-        My profile
-      </div>
-      <div className="update">
-        Update your profile information
-      </div>
-      <div className="title">
-        <div className="title_basic">
-          Basic information
-        </div>
-      </div>
       
       <div className="basicInformation">
-        <div className="data">
-          <div>
-            Name: {user.name}
-          </div>
-          <div>
-            Surname: {user.surname}
-          </div>
-          <div>
-            E-mail: {user.email}
-          </div>
-          <div>
-            Phone number: {user.phone ? user.phone : "Nie podany"}
-          </div>
-        </div>
         <div className="photo">
-            <img src={user.photo ? user.photo : "https://bi.im-g.pl/im/5e/7e/1b/z28830814Q,Amou-Hadzi-na-co-dzien-zyje-w-Dejgah-w-Iranie.jpg"} alt="Opis obrazka" />
+            <img src={user.photo ? user.photo : "https://hub.alfresco.com/legacyfs/online/alfresco/a12790_user-86426-avatar"} alt="Opis obrazka" />
+        </div>
+        <div className="data">
+          <div className='dataBit'>
+            <p className='bitType'>
+              Name: 
+            </p>
+            <p className='bitName'>
+              {user.name}
+            </p>
+          </div>
+          <div className='dataBit'>
+            <p className='bitType'>
+              Surname: 
+            </p>
+            <p className='bitName'>
+              {user.surname}
+            </p>
+          </div>
+          <div className='dataBit'>
+            <p className='bitType'>
+              E-mail: 
+            </p>
+            <p className='bitName'>
+              {user.email}
+            </p>
+          </div>
+          <div className='dataBit'>
+            <p className='bitType'>
+              Phone number: 
+            </p>
+            <p className='bitName'>
+              {user.phone ? user.phone : "Not given"}
+            </p>
+          </div>
         </div>
       </div>
+      <button className='panelButton' onClick={handleEditProfile}>Edit profile</button>
     </div>
   )
 }

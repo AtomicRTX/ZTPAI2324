@@ -14,6 +14,21 @@ class UserService {
       throw error;
     });
   }
+  updateUser(name, surname, photo, phone){
+    return axios.post(API_URL + 'edit', {
+      name, 
+      surname, 
+      photo, 
+      phone
+  }, { headers: authHeader() })
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      console.error('Error fetching user:', error);
+      throw error;
+    });
+  }
 }
 
 export default new UserService();

@@ -25,4 +25,18 @@ public class UserController {
         UserDto userDto = userService.getByEmail(auth.getName());
         return ResponseEntity.ok(userDto);
     }
+
+    @PostMapping("/edit")
+    public ResponseEntity<UserDto> editUser(@RequestBody UserDto userDto) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserDto userDto1 = userService.getByEmail(auth.getName());
+
+        userDto1.setName(userDto.getName());
+        userDto1.setSurname(userDto.getSurname());
+        userDto1.setPhoto(userDto.getPhoto());
+        userDto1.setPhone(userDto.getPhone());
+
+        userService.updateUser(userDto1);
+        return ResponseEntity.ok(userDto1);
+    }
 }

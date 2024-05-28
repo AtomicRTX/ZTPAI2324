@@ -2,37 +2,8 @@
     margin: 5em 2em 1em;
 }
 
-.profile .my{
-    font-size: 2.2em;
-    margin-bottom: 0.5em;
-}
-
-.profile .update{
-    font-size: 1.2em;
-    margin-bottom: 1.5em;
-}
-
-.profile .title{
-    display: flex;
-    font-size: 1em;
-}
-
-.profile .title .title_basic{
-    font-size: 2.2em;
-    margin-bottom: 1em;
-}
-
-.profile .title .edit{
-    font-size: 1.3em;
-    margin-top: 0.4em;
-    margin-left: 0.4em;
-    color: #52b6e9;
-    text-decoration: none;
-}
-
 .profile .basicInformation{
     font-size: 1.2em;
-    display: flex;
 }
 
 .profile .basicInformation .data div:first-child{
@@ -43,14 +14,23 @@
     margin-bottom: 1em;
 }
 
-main > .profile .basicInformation .photo{
+.profile .basicInformation .photo{
     display: flex;
     flex-direction: column;
-    margin-left: 10em;
     align-items: center;
 }
 
-main > .profile .basicInformation .photo img{
-    width: 200px;
-    height: 220px;
+.profile .basicInformation .photo img{
+    width: 15vw;
+    height: 30vh;
+    object-fit: cover;
+}
+
+.profile .basicInformation .data .dataBit{
+    margin-top: 1.5vh;
+}
+
+.profile .basicInformation .data .dataBit .bitType{
+    font-weight: bold;
+    margin-bottom: 1vh;
 }

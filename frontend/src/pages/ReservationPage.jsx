@@ -3,6 +3,7 @@ import axios from 'axios';
 import Navigation from '../components/Navigation';
 import SearchBar from '../components/SearchBar';
 import '../css/pages.css';
+import '../css/reservationPage.css';
 import ReservationList from '../components/ReservationList';
 
 import authHeader from '../services/auth-header';
@@ -24,10 +25,12 @@ const ReservationPage = () => {
   return (
     <div className="desktop">
         <Navigation />
-       <main>
+       <main className='ma'>
           <SearchBar />
           <p className="categories_name">My reservations</p>
-          <ReservationList reservations={reservations}/>
+          <div className='re'>
+            <ReservationList reservations={reservations}/>
+          </div>
        </main>
     </div>
   )

@@ -1,22 +1,21 @@
 import React from 'react';
-
 import Navigation from '../components/Navigation'
-import ProfileInfo from '../components/ProfileInfo'
+import EditInfo from '../components/EditInfo'
 
 import '../css/profilePage.css';
 
-const ProfilePage = () => {
+const EditPage = () => {
     return (
         <div className='desktop'>
             <Navigation />
             <main className='restaurantPan' style={{backgroundImage: `url('../../img/restaurantBackground.jpg')`}}>
                 <div className="rectangleProfile">
                     <p className="profile_name">My profile</p>
-                    <ProfileInfo/>
+                    <EditInfo/>
                 </div>
             </main>
         </div>
   )
 }
 
-export default ProfilePage
+export default EditPage

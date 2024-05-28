@@ -1,0 +1,40 @@
+.edit {
+    margin: 5em 2em 1em;
+}
+
+.edit .basicInformation{
+    font-size: 1.2em;
+}
+
+.edit .basicInformation .data div:first-child{
+    margin-top: 2em;
+}
+
+.edit .basicInformation .data div{
+    margin-bottom: 1em;
+}
+
+.edit .basicInformation .formProfile .photo p{
+    font-weight: bold;
+    margin-bottom: 0.5vh;
+}
+
+.edit .basicInformation .formProfile .data .dataBit{
+    margin-top: 5vh;
+}
+
+.edit .basicInformation .formProfile .data .dataBit .bitType{
+    font-weight: bold;
+    margin-bottom: 0.5vh;
+}
+
+.editI{
+    height: 4vh;
+    width: 20vw;
+    background: var(--grisClaro, #F3F3F3);
+    text-align: inherit;
+}
+.message{
+    color: red;
+    font-weight: bold;
+}
