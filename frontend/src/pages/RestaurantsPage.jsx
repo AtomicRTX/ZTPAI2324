@@ -1,34 +1,47 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 import Navigation from '../components/Navigation';
 import SearchBar from '../components/SearchBar';
-import '../css/pages.css';
 import RestaurantList from '../components/RestaurantList';
-import authHeader from '../services/auth-header';
 
+import '../css/pages.css';
 import '../css/restaurantsPage.css';
 
+import RestaurantService from '../services/restaurant.service';
+
 const RestaurantsPage = () => {
-  const [restaurants, setRestaurants] = useState([]);
+    const [restaurants, setRestaurants] = useState([]);
+    const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
     useEffect(() => {
-      axios.get('http://localhost:8080/api/v1/restaurant/all', { headers: authHeader() })
-        .then(response => {
-          setRestaurants(response.data);
-        })
-        .catch(error => {
-          console.error('Error fetching restaurants:', error);
-        });
-    }, []);
+      RestaurantService.getRestaurants()
+      .then(data => {
+        setRestaurants(data);
+        setFilteredRestaurants(data);
+      })
+      .catch(error => console.error('Error:', error));
+  }, []);
+
+    const searchFilter = (inputText) => {
+      if (inputText === '') {
+        setFilteredRestaurants(restaurants);
+      }
+      else{
+        const filtered = restaurants.filter(restaurant => restaurant.res_name.toLowerCase().includes(inputText));
+        console.log(filtered);
+        setFilteredRestaurants(filtered);
+      }
+    }
+
+
   return (
     <div className="desktop">
         <Navigation />
        <main className='ma'>
-          <SearchBar />
+          <SearchBar onSearch={searchFilter}/>
           <p className="categories_name">All restaurants</p>
           <div className='ra'>
-            <RestaurantList restaurants={restaurants} />
+            <RestaurantList restaurants={filteredRestaurants} />
           </div>
        </main>
     </div>

@@ -14,7 +14,26 @@ class RestaurantService {
       throw error;
     });
   }
-
+  getBestRestaurants() {
+    return axios.get(API_URL + `best`, { headers: authHeader() })
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      console.error('Error fetching restaurant:', error);
+      throw error;
+    });
+  }
+  getRestaurants() {
+    return axios.get(API_URL + `all`, { headers: authHeader() })
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      console.error('Error fetching restaurant:', error);
+      throw error;
+    });
+  }
 }
 
 export default new RestaurantService();

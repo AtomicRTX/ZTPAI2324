@@ -1,35 +1,63 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+
 import Navigation from '../components/Navigation';
 import SearchBar from '../components/SearchBar';
-import '../css/pages.css';
-import '../css/reservationPage.css';
 import ReservationList from '../components/ReservationList';
 
-import authHeader from '../services/auth-header';
+import '../css/pages.css';
+import '../css/reservationPage.css';
+
+import RestaurantService from '../services/restaurant.service';
+import ReservationService from '../services/reservation.service';
 
 const ReservationPage = () => {
 
   const [reservations, setReservations] = useState([]);
+  const [filteredReservations, setFilteredReservations] = useState([]);
 
     useEffect(() => {
-      axios.get('http://localhost:8080/api/v1/reservation/actual', { headers: authHeader() })
-        .then(response => {
-          setReservations(response.data);
-        })
+      ReservationService.getActualReservations()
+      .then(reservationsData => {
+        const restaurantPromises = reservationsData.map(reservation => 
+          RestaurantService.getRestaurant(reservation.restaurant_id)
+            .then(restaurantData => ({
+              ...reservation,
+              res_name: restaurantData.res_name
+            }))
+            .catch(error => {
+              console.error(`Error fetching restaurant ${reservation.restaurant_id}:`, error);
+              return { ...reservation, res_name: 'Unknown' };
+            })
+        );
+
+        Promise.all(restaurantPromises).then(updatedReservations => {
+          setReservations(updatedReservations);
+          setFilteredReservations(updatedReservations);
+        });
+      })
         .catch(error => {
           console.error('Error fetching reservations:', error);
         });
     }, []);
-    console.log(reservations);
+
+    const searchFilter = (inputText) => {
+      if (inputText === '') {
+        setFilteredReservations(reservations);
+        console.log(reservations);
+      } else {
+         const filtered = reservations.filter(reservation => reservation.res_name.toLowerCase().includes(inputText));
+         setFilteredReservations(filtered);
+      }
+    };
+
   return (
     <div className="desktop">
         <Navigation />
        <main className='ma'>
-          <SearchBar />
+          <SearchBar onSearch={searchFilter}/>
           <p className="categories_name">My reservations</p>
           <div className='re'>
-            <ReservationList reservations={reservations}/>
+            <ReservationList reservations={filteredReservations}/>
           </div>
        </main>
     </div>
