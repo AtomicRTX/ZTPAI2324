@@ -50,6 +50,16 @@ public class User implements UserDetails {
 
     private Set<Type> types = new HashSet<>();
 
+    public void addType(Type type) {
+        types.add(type);
+        type.getUsers().add(this);
+    }
+
+    public void removeType(Type type) {
+        types.remove(type);
+        type.getUsers().remove(this);
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return types.stream()

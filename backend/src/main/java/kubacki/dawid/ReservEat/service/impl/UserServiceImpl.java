@@ -5,8 +5,12 @@ import kubacki.dawid.ReservEat.mapper.UserMapper;
 import kubacki.dawid.ReservEat.models.User;
 import kubacki.dawid.ReservEat.repository.UserRepository;
 import kubacki.dawid.ReservEat.service.UserService;
+import kubacki.dawid.ReservEat.service.TypeEnum;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -31,5 +35,23 @@ public class UserServiceImpl implements UserService {
         user.setPhone(userDto.getPhone());
 
         userRepository.save(user);
+    }
+
+    @Override
+    public Boolean isAdmin(UserDto userDto) {
+        User user = userRepository.findById(userDto.getUser_id()).orElseThrow(() -> new RuntimeException("User not found."));
+        return user.getTypes().stream().anyMatch(type -> type.getName().equals(TypeEnum.ADMIN.name()));
+    }
+
+    @Override
+    public List<UserDto> getAllUsers() {
+        List<User> users = userRepository.findAll();
+        return users.stream().map((user -> UserMapper.mapToUserDto(user))).collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteUser(int user_id) {
+        User user = userRepository.findById(user_id).orElseThrow(() -> new RuntimeException("User not found."));
+        userRepository.delete(user);
     }
 }

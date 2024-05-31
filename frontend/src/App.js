@@ -11,10 +11,12 @@ import RegisterPage from './pages/RegisterPage';
 import RestaurantPage from './pages/RestaurantPage';
 import CategoryPage from './pages/CategoryPage';
 import EditPage from './pages/EditPage';
+import ManagePage from './pages/ManagePage';
 
 import AuthService from "./services/auth.service";
 import Logged from "./routes/Logged";
 import Unlogged from "./routes/Unlogged";
+import LoggedAdmin from './routes/LoggedAdmin';
 
 class App extends Component {
     constructor(props) {
@@ -55,13 +57,16 @@ render() {
                 <Route path={'/restaurantPage/:restaurantID'} element={<RestaurantPage/>}/>
                 <Route path={'/categoryPage/:categoryName'} element={<CategoryPage/>} />
             </Route>
+            <Route element={<LoggedAdmin/>}>
+              <Route path={'/addPage'} element={<ManagePage/>}/>
+                <Route path={'/managePage'} element={<ManagePage/>}/>
+            </Route>
             <Route element={<Unlogged/>}>
                 <Route path={'/'} element={<WelcomePage/>}/>
                 <Route path={'/loginPage'} element={<LoginPage/>}/>
                 <Route path={'/registerPage'} element={<RegisterPage/>}/>    
             </Route>
           </Routes>
-
       </>
   );
 }

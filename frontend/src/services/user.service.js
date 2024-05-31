@@ -14,6 +14,16 @@ class UserService {
       throw error;
     });
   }
+  getAllUsers() {
+    return axios.get(API_URL + 'all', { headers: authHeader() })
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      console.error('Error fetching user:', error);
+      throw error;
+    });
+  }
   updateUser(name, surname, photo, phone){
     return axios.post(API_URL + 'edit', {
       name, 
@@ -21,6 +31,26 @@ class UserService {
       photo, 
       phone
   }, { headers: authHeader() })
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      console.error('Error fetching user:', error);
+      throw error;
+    });
+  }
+  isAdmin(){
+    return axios.get(API_URL + 'admin', { headers: authHeader() })
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      console.error('Error fetching user:', error);
+      throw error;
+    });
+  }
+  deleteUser(user_id){
+    return axios.post(API_URL + 'delete', {user_id}, { headers: authHeader() })
     .then(response => {
       return response.data;
     })

@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/navigation.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faCalendar, faUtensils, faHouseChimney, faArrowRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope, faCalendar, faUtensils, faHouseChimney, faArrowRightFromBracket, faUser, faUsers, faPlus } from '@fortawesome/free-solid-svg-icons'
 
 import AuthService from "../services/auth.service";
 import UserService from '../services/user.service';
 
 const Navigation = () => {
     const [user, setUser] = useState({});
+    const [admin, setAdmin] = useState(false);
 
     useEffect(() => {
       UserService.getUser()
@@ -17,6 +18,12 @@ const Navigation = () => {
         .catch(error => console.error('Error:', error));
     }, []);
 
+    useEffect(() => {
+        UserService.isAdmin()
+          .then(data => setAdmin(data)
+          )
+          .catch(error => console.error('Error:', error));
+      }, []);
 
     const logOut = () =>{
         AuthService.logout();
@@ -53,6 +60,14 @@ const Navigation = () => {
                         Notification
                     </Link>
                 </li>
+                {admin && (
+                    <li>
+                        <Link to="/managePage" className="button">
+                        <FontAwesomeIcon className="fa-icon" icon={faUsers} />
+                            Users
+                        </Link>
+                    </li>
+                )}
                 <li className='my_pr'>
                     <Link to="/profilePage" className="button">
                         <FontAwesomeIcon className="fa-icon" icon={faUser} />
