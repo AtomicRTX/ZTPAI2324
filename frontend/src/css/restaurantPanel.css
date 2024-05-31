@@ -15,9 +15,9 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
-  }
+}
 
- .rectangle {
+.rectangle {
     background-color: rgba(255, 255, 255, 1);
     padding: 20px;
     margin: 5vw;
@@ -27,31 +27,31 @@
     width: 100vw;
     height: 90vh;
     z-index: 2;
-  }
-  .rectangle > img{
+}
+.rectangle > img{
     align-self: center;
     margin: 0.5em 1em;
     height: 10%;
     object-fit: fill;
-  }
+}
   
-  .rectangle p {
+.rectangle p {
     margin: 0;
-  }
+}
 
-  .rectangle > .resName{
+.rectangle > .resName{
       margin: 1em;
-  }
+}
 
-  .rectangle > .resD{
+.rectangle > .resD{
     margin: 3em 1em;
-  }
+}
 
-  .rectangle > .resLoc{
+.rectangle > .resLoc{
     margin: 3em 1em 2em;
-  }
+}
 
-  .panelButton{
+.panelButton{
     margin: 2em 10em;
     text-align: left;
     letter-spacing: 1px;
@@ -62,41 +62,27 @@
     border: none;
     text-align: center;
     background-color:#000000;
-  }
+}
 
-  .panelButton:hover {
+.panelButton:hover {
     background-color: #555555;
-  }
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  .rectangle > .formReserv{
+.rectangle > .formReserv{
     display: flex;
     flex-direction: column;
-  }
+}
 
-  label {
+label {
     margin: 1em 1em 0.5em;
     font-size: 1.3em;
-  }
+}
 
-  select, .datePicker{
+select, .datePicker{
     justify-content: center;
     padding: 1em;
     margin: 2em 5em;
+    width: 20vw;
+    box-sizing: border-box;
 }
