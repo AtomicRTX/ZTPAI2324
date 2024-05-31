@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import '../css/registerForm.css';
 
 import Form from "react-validation/build/form";
@@ -13,43 +13,33 @@ import AuthService from "../services/auth.service";
 
 const required = value => {
     if (!value) {
-      return (
-        <div className="alert alert-danger" role="alert">
-          This field is required!
-        </div>
-      );
+        return (
+            <div className="message" role="alert">
+                This field is required!
+            </div>
+        );
     }
-  };
+};
 
-  const email = value => {
+const email = value => {
     if (!isEmail(value)) {
-      return (
-        <div className="alert alert-danger" role="alert">
-          This is not a valid email.
-        </div>
-      );
+        return (
+            <div className="message" role="alert">
+                This is not a valid email.
+            </div>
+        );
     }
-  };
+};
   
-  const vpassword = value => {
+const vpassword = value => {
     if (value.length < 6 || value.length > 20) {
-      return (
-        <div className="alert alert-danger" role="alert">
-          The password must be between 6 and 20 characters.
-        </div>
-      );
+        return (
+            <div className="message" role="alert">
+                The password must be between 6 and 20 characters.
+            </div>
+        );
     }
-  };
-
-  const passwordsMatch = (password, confirmedPassword) => {
-        if (password !== confirmedPassword) {
-            return (
-                <div className="alert alert-danger" role="alert">
-                    Confirmed password must match the password.
-                </div>
-            );
-        }
-    };
+};
 
 export default class RegisterForm extends Component {
     constructor(props) {
@@ -74,13 +64,13 @@ export default class RegisterForm extends Component {
   
     onChangeName(e) {
         this.setState({
-          name: e.target.value
+            name: e.target.value
         });
-      }
+    }
     
     onChangeSurname(e) {
         this.setState({
-          surname: e.target.value
+            surname: e.target.value
         });
     }
   
@@ -112,7 +102,7 @@ export default class RegisterForm extends Component {
   
         this.form.validateAll();
   
-        if (this.password !== this.confirmedPassword) {
+        if (this.state.password !== this.state.confirmedPassword) {
             this.setState({
                 successful: false,
                 message: "Confirmed password must match the password."
@@ -132,25 +122,28 @@ export default class RegisterForm extends Component {
                         message: response.data.message,
                         successful: true
                     });
+
+                    setTimeout(() => {
+                        this.setState({ redirectToLogin: true });
+                    }, 2000);
                 },
           error => {
-            const resMessage =
-                (error.response &&
-                    error.response.data &&
-                    error.response.data.message) ||
-                error.message ||
-                error.toString();
-  
-            this.setState({
-              successful: false,
-              message: resMessage
-            });
+              const resMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+              this.setState({
+                  successful: false,
+                  message: resMessage
+              });
           }
         );
       }
     }
 
     render() {
+
+        if (this.state.redirectToLogin) {
+            return <Navigate to="/loginPage" />;
+        }
+
         return (
             <div className="register-container">
                 <Form onSubmit={this.handleRegister} ref={c => {this.form = c;}}>
@@ -160,12 +153,10 @@ export default class RegisterForm extends Component {
                             <Input className="form-control" name="email" type="text" placeholder="E-mail" value={this.state.email} onChange={this.onChangeEmail} validations={[required, email]}/>
                             <Input className="form-control" name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.onChangePassword} validations={[required, vpassword]}/>
                             <Input className="form-control" name="confirmedPassword" type="password" placeholder="Confirmed password" value={this.state.confirmedPassword} onChange={this.onChangeConfirmedPassword}/>
-                            {passwordsMatch(this.state.password, this.state.confirmedPassword)}
                             <button type="submit" className="Up">Sign Up</button>
-                            
                         </div>
                     {this.state.message && (
-                        <div className="form-group">
+                        <div className="message">
                             <div
                             className={
                                 this.state.successful
@@ -180,6 +171,11 @@ export default class RegisterForm extends Component {
                     )}
                     <CheckButton style={{ display: "none" }} ref={c => { this.checkBtn = c; }} />
                 </Form>
+                {this.state.successful && (
+                <div className="message">
+                    <p>Register successful</p>
+                </div>
+                )}
 
                 <div className="loginr">
                     <p>You already have an account ?</p>
@@ -188,7 +184,6 @@ export default class RegisterForm extends Component {
                     <button className="In">Sign in</button>
                 </Link>
             </div>
-  )
-}
-
+        )
+    }
 }
