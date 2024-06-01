@@ -5,9 +5,9 @@ import lombok.Getter;
 
 @Getter
 @Entity
-@Table(name = "notifications")
+@Table(name = "reminders")
 
-public class Notification {
+public class Reminders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
