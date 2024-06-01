@@ -30,6 +30,16 @@ class RestaurantService {
       throw error;
     });
   }
+  likeRestaurant(restaurantID) {
+    return axios.post(API_URL + `${restaurantID}/like`, {}, { headers: authHeader() })
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      console.error('Error fetching restaurant:', error);
+      throw error;
+    });
+  }
   getBestRestaurants() {
     return axios.get(API_URL + `best`, { headers: authHeader() })
     .then(response => {

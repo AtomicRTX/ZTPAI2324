@@ -54,6 +54,13 @@ public class Restaurant {
     )
     private Set<Category> categories = new HashSet<>();
 
+    public void like(){
+        this.res_like++;
+    }
+    public void dislike(){
+        this.res_like--;
+    }
+
     public Restaurant(int resId, String resName, String resLocation, String resLogo, String resMap, String resD, int resLike, LocalTime startHour, LocalTime endHour) {
         this.res_id = resId;
         this.res_name = resName;

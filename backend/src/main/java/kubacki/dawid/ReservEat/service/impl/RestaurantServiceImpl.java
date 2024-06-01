@@ -3,8 +3,12 @@ package kubacki.dawid.ReservEat.service.impl;
 import kubacki.dawid.ReservEat.dto.RestaurantDto;
 import kubacki.dawid.ReservEat.exception.ResourceNotFoundException;
 import kubacki.dawid.ReservEat.mapper.RestaurantMapper;
+import kubacki.dawid.ReservEat.models.Likes;
 import kubacki.dawid.ReservEat.models.Restaurant;
+import kubacki.dawid.ReservEat.models.User;
+import kubacki.dawid.ReservEat.repository.LikeRepository;
 import kubacki.dawid.ReservEat.repository.RestaurantRepository;
+import kubacki.dawid.ReservEat.repository.UserRepository;
 import kubacki.dawid.ReservEat.service.RestaurantService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,7 +21,9 @@ import java.util.stream.Collectors;
 
 public class RestaurantServiceImpl implements RestaurantService {
 
-    private RestaurantRepository restaurantRepository;
+    private final UserRepository userRepository;
+    private final RestaurantRepository restaurantRepository;
+    private final LikeRepository likeRepository;
 
     @Override
     public RestaurantDto createRestaurant(RestaurantDto restaurantDto) {
@@ -51,4 +57,25 @@ public class RestaurantServiceImpl implements RestaurantService {
         return catRestaurants.stream().map((restaurant -> RestaurantMapper.mapToRestaurantDto(restaurant))).collect(Collectors.toList());
     }
 
+    @Override
+    public void likeRestaurant(int user_id, int res_id){
+        Restaurant restaurant = restaurantRepository.findById(res_id)
+                .orElseThrow(()-> new ResourceNotFoundException("Restaurant not found with id : " + res_id));
+        User user = userRepository.findById(user_id)
+                .orElseThrow(() -> new RuntimeException("User not found."));
+        Likes like = likeRepository.findByUserAndRestaurant(user, restaurant);
+
+        if (like != null) {
+            likeRepository.delete(like);
+            restaurant.dislike();
+        } else {
+            Likes l = new Likes();
+            l.setUser(user);
+            l.setRestaurant(restaurant);
+            likeRepository.save(l);
+            restaurant.like();
+        }
+
+        restaurantRepository.save(restaurant);
+    }
 }

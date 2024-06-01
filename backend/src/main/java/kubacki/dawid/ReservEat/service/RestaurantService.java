@@ -13,4 +13,5 @@ public interface RestaurantService {
 
     List<RestaurantDto> getBestRestaurants();
     List<RestaurantDto> getRestaurantsByCategory(String categoryName);
+    void likeRestaurant(int user_id, int res_id);
 }

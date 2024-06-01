@@ -1,12 +1,17 @@
 package kubacki.dawid.ReservEat.controllers;
 
 import kubacki.dawid.ReservEat.dto.RestaurantDto;
+import kubacki.dawid.ReservEat.dto.UserDto;
+import kubacki.dawid.ReservEat.models.User;
 import kubacki.dawid.ReservEat.repository.RestaurantRepository;
 import kubacki.dawid.ReservEat.service.RestaurantService;
+import kubacki.dawid.ReservEat.service.UserService;
 import lombok.RequiredArgsConstructor;
 import kubacki.dawid.ReservEat.models.Restaurant;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,12 +22,20 @@ import java.util.List;
 
 public class RestaurantController {
     private final RestaurantService restaurantService;
-    private final RestaurantRepository restaurantRepository;
+    private final UserService userService;
 
     @PostMapping("/create")
     public ResponseEntity<RestaurantDto> createRestaurant(@RequestBody RestaurantDto restaurantDto) {
         RestaurantDto savedRestaurant = restaurantService.createRestaurant(restaurantDto);
         return new ResponseEntity<>(savedRestaurant, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/{id}/like")
+    public ResponseEntity<RestaurantDto> likeRestaurant(@PathVariable("id") int res_id) {
+        RestaurantDto restaurantDto = restaurantService.getRestaurantById(res_id);
+        UserDto userDto = userService.getByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+        restaurantService.likeRestaurant(userDto.getUser_id(), restaurantDto.getRes_id());
+        return ResponseEntity.ok(restaurantDto);
     }
 
     @GetMapping("{id}")
