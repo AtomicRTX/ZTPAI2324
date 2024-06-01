@@ -17,6 +17,7 @@ import AuthService from "./services/auth.service";
 import Logged from "./routes/Logged";
 import Unlogged from "./routes/Unlogged";
 import LoggedAdmin from './routes/LoggedAdmin';
+import AddPage from './pages/AddPage';
 
 class App extends Component {
     constructor(props) {
@@ -58,7 +59,7 @@ render() {
                 <Route path={'/categoryPage/:categoryName'} element={<CategoryPage/>} />
             </Route>
             <Route element={<LoggedAdmin/>}>
-              <Route path={'/addPage'} element={<ManagePage/>}/>
+                <Route path={'/addPage'} element={<AddPage/>}/>
                 <Route path={'/managePage'} element={<ManagePage/>}/>
             </Route>
             <Route element={<Unlogged/>}>

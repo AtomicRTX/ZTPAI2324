@@ -4,6 +4,22 @@ import authHeader from './auth-header';
 const API_URL = 'http://localhost:8080/api/v1/restaurant/';
 
 class RestaurantService {
+  createRestaurant(res_logo, res_name, res_location, res_map, start_hour, end_hour) {
+    return axios.post(API_URL + `create`,{
+      res_logo, 
+      res_name, 
+      res_map, 
+      start_hour,
+      end_hour
+  }, { headers: authHeader() })
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      console.error('Error fetching restaurant:', error);
+      throw error;
+    });
+  }
   getRestaurant(restaurantID) {
     return axios.get(API_URL + `${restaurantID}`, { headers: authHeader() })
     .then(response => {
@@ -36,4 +52,6 @@ class RestaurantService {
   }
 }
 
-export default new RestaurantService();
+const restaurantServiceInstance = new RestaurantService();
+
+export default restaurantServiceInstance;

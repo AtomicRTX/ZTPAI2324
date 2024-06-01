@@ -68,6 +68,14 @@ const Navigation = () => {
                         </Link>
                     </li>
                 )}
+                {admin && (
+                    <li>
+                        <Link to="/addPage" className="button">
+                        <FontAwesomeIcon className="fa-icon" icon={faPlus} />
+                            Add restaurant
+                        </Link>
+                    </li>
+                )}
                 <li className='my_pr'>
                     <Link to="/profilePage" className="button">
                         <FontAwesomeIcon className="fa-icon" icon={faUser} />

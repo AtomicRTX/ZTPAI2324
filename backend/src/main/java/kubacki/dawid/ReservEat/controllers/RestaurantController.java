@@ -19,7 +19,7 @@ public class RestaurantController {
     private final RestaurantService restaurantService;
     private final RestaurantRepository restaurantRepository;
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<RestaurantDto> createRestaurant(@RequestBody RestaurantDto restaurantDto) {
         RestaurantDto savedRestaurant = restaurantService.createRestaurant(restaurantDto);
         return new ResponseEntity<>(savedRestaurant, HttpStatus.CREATED);
