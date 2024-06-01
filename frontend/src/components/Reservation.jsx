@@ -10,11 +10,20 @@ const Reservation = ({reservation}) => {
 
     const [restaurant, setRestaurant] = useState({});
     const [isCancelled, setIsCancelled] = useState(false);
+    const [isCancelable, setIsCancelable] = useState(true);
 
     useEffect(() => {
         RestaurantService.getRestaurant(reservation.restaurant_id)
             .then(data => setRestaurant(data))
             .catch(error => console.error('Error:', error));
+
+            const reservationTime = new Date(`${reservation.date}T${reservation.hour}`);
+            const currentTime = new Date();
+            const timeDifference = (reservationTime - currentTime) / (1000 * 60);
+    
+            if (timeDifference <= 60) {
+                setIsCancelable(false);
+            }
     }, [reservation.restaurant_id]);
 
     const handleCancelReservation = () => {
@@ -35,7 +44,7 @@ const Reservation = ({reservation}) => {
                         <p className="d">Reservation date: {reservation.date} {reservation.hour}</p>
                         <p className="p">Number of people: {reservation.number_of_people }</p>
                     </div>
-                    <button className="cancel-btn" onClick={handleCancelReservation}>Cancel reservations </button>
+                    <button className="cancel-btn" onClick={handleCancelReservation} disabled={!isCancelable}>Cancel reservations </button>
                 </div>
             </div>
         </Link>

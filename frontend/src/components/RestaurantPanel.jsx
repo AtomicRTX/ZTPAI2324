@@ -23,7 +23,11 @@ const ReservationForm = () => {
 
     useEffect(() => {
         RestaurantService.getRestaurant(restaurantID)
-            .then(data => setRestaurant(data))
+            .then(data => {
+                setRestaurant(data);
+                setSelectedDate(new Date().toISOString().split('T')[0]);
+                setSelectedHour(data.start_hour);
+            })
             .catch(error => console.error('Error:', error));
     }, [restaurantID]);
 
@@ -45,7 +49,7 @@ const ReservationForm = () => {
             option.text = time.toLocaleTimeString('pl-PL', {hour: '2-digit', minute: '2-digit'});
             selectTime.appendChild(option);
         }
-    }, [restaurant]);
+    }, [restaurant, selectedDate, selectedHour]);
 
 
     const onNumberOfPeople = (e) => {
@@ -63,6 +67,21 @@ const ReservationForm = () => {
     const handleReservation = (e) => {
         e.preventDefault();
         setMessage('');
+
+        const reservationDateTime = new Date(`${selectedDate}T${selectedHour}`);
+        const currentDateTime = new Date();
+
+        if (reservationDateTime <= currentDateTime) {
+            setMessage('Reservation date and time must be in the future unless you have DeLorean.');
+            return;
+        }
+
+        currentDateTime.setFullYear(currentDateTime.getFullYear() + 1);
+
+        if (reservationDateTime > currentDateTime) {
+            setMessage('Reservation date cannot be more than 1 year from now.');
+            return;
+        }
 
         ReservationService.makeReservation(user.user_id, restaurant.res_id, selectedDate, selectedHour, selectedNumberOfPeople)
             .then(response => {
@@ -105,7 +124,7 @@ const ReservationForm = () => {
                     <label for="selectTime">Select a time:</label>
                     <Select id="selectTime" name="selectedTime" value={selectedHour} onChange={onTime}></Select>
                     <button className='panelButton'>Book a reservation</button>
-                    {message && <div>{message}</div>}
+                    {message && <div className='message'>{message}</div>}
                 </Form>
             </div>
         </main>
