@@ -1,10 +1,14 @@
 package kubacki.dawid.ReservEat.models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Entity
 @Table(name = "types")
@@ -19,5 +23,5 @@ public class Type {
     private String name;
 
     @ManyToMany(mappedBy = "types")
-    private Set<User> users;
+    private Set<User> users = new HashSet<>();
 }
