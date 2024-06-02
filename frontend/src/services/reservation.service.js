@@ -16,7 +16,7 @@ class ReservationService {
     }
 
     cancelReservation(reserv_id) {
-        return axios.post(API_URL + "cancel", { reserv_id }, { headers: authHeader() });
+        return axios.delete(API_URL + "cancel", { data: {reserv_id: reserv_id},headers: authHeader() });
     }
 
     getActualReservations() {
