@@ -60,7 +60,7 @@ const AddInfo = () => {
                     error.response.data.message) ||
                     error.message ||
                     error.toString();
-                setMessage(`Update failed. Details: Error: ${resMessage}`);
+                setMessage(`Update failed. Error: ${resMessage}`);
             });
     }
 

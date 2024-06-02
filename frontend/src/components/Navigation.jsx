@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/navigation.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faCalendar, faUtensils, faHouseChimney, faArrowRightFromBracket, faUser, faUsers, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faCalendar, faUtensils, faHouseChimney, faArrowRightFromBracket, faUser, faUsers, faPlus } from '@fortawesome/free-solid-svg-icons'
 
 import AuthService from "../services/auth.service";
 import UserService from '../services/user.service';
@@ -32,7 +32,7 @@ const Navigation = () => {
     return (
     <nav>
             <div className="logo">
-                <img src="../../img/logo.svg"/>
+                <img src="../../img/logo.svg" alt=''/>
                 <p>ReservEat</p>
             </div>
             <ul>
@@ -52,12 +52,6 @@ const Navigation = () => {
                     <Link to="/reservationPage" className="button">
                         <FontAwesomeIcon className="fa-icon" icon={faCalendar} />
                         My reservation
-                    </Link>
-                </li>
-                <li className='notification'>
-                    <Link to="/notificationPage" className="button">
-                        <FontAwesomeIcon className="fa-icon" icon={faEnvelope} />
-                        Notification
                     </Link>
                 </li>
                 {admin && (

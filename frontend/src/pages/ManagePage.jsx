@@ -10,10 +10,10 @@ import UserService from '../services/user.service';
 import UsersList from '../components/UsersList';
 
 const ManagePage = () => {
-    const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([]);
 
-    useEffect(() => {
-      UserService.getAllUsers()
+  useEffect(() => {
+    UserService.getAllUsers()
       .then(data => {
         setUsers(data);
       })
@@ -22,15 +22,15 @@ const ManagePage = () => {
 
   return (
     <div className="desktop">
-    <Navigation />
-   <main className='ma'>
-      <SearchBar/>
-      <p className="categories_name">All users</p>
-      <div className='re'>
-      <UsersList users={users}/>
-      </div>
-   </main>
-</div>
+      <Navigation />
+      <main className='ma'>
+        <SearchBar/>
+        <p className="categories_name">All users</p>
+        <div className='re'>
+          <UsersList users={users}/>
+        </div>
+      </main>
+    </div>
   )
 }
 

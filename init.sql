@@ -65,19 +65,6 @@ create table reservation
             references users
 );
 
-create table notifications
-(
-    not_id    serial
-        primary key,
-    reserv_id integer not null
-        constraint fkjuaalvaxpk7p1sbyaxhmxsmw6
-            references reservation,
-    user_id   integer not null
-        constraint fk9y21adhxn0ayjhfocscqox7bh
-            references users,
-    message   varchar(255)
-);
-
 create table user_types
 (
     type_id integer not null
@@ -89,4 +76,14 @@ create table user_types
     primary key (type_id, user_id)
 );
 
-
+create table likes
+(
+    like_id serial
+        primary key,
+    res_id  integer not null
+        constraint fkngx3e7jjqk5mjgxa9kevuljf1
+            references restaurants,
+    user_id integer not null
+        constraint fknvx9seeqqyy71bij291pwiwrg
+            references users
+);

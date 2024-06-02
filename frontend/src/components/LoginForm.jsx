@@ -53,16 +53,10 @@ import { withRouter } from '../routes/with-router';
                 window.location.reload();
             },
             error => {
-                const resMessage =
-                (error.response &&
-                    error.response.data &&
-                    error.response.data.message) ||
-                error.message ||
-                error.toString();
-    
+                const resMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
                 this.setState({
-                loading: false,
-                message: resMessage
+                    loading: false,
+                    message: `Login failed. Error: ${resMessage}`
                 });
             }
             );
@@ -81,13 +75,13 @@ import { withRouter } from '../routes/with-router';
                 <Form className="login" onSubmit={this.handleLogin} ref={c => {this.form = c;}}>
                     <Input className="form-control" name="email" type="text" placeholder="E-mail" value={this.state.email} onChange={this.onChangeEmail}/>
                     <Input className="form-control" name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.onChangePassword}/>
-                   <button type="submit" className="In" disabled={this.state.loading}>{this.state.loading && (
-                  <span className="spinner-border spinner-border-sm"></span>
-                )}
-                <span>Sign In</span></button>
+                    <button type="submit" className="In" disabled={this.state.loading}>
+                        {this.state.loading && (<span className="spinner-border spinner-border-sm"></span>)}
+                        <span>Sign In</span>
+                    </button>
                     {this.state.message && (
                     <div className="form-group">
-                        <div className="alert alert-danger" role="alert">
+                        <div className="message" role="alert">
                         {this.state.message}
                         </div>
                     </div>
@@ -104,10 +98,8 @@ import { withRouter } from '../routes/with-router';
                     <button className="Up">Sign up</button>
                 </Link>
             </div>
-
-  )
-}
-
+        )
+    }
 }
 
 export default withRouter(LoginForm);

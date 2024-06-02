@@ -22,20 +22,20 @@ const Restaurant = ({restaurant}) => {
     window.location.reload();
   }
   return (
-      <Link to={`/restaurantPage/${restaurant.res_id}`}>
-          <div className="restaurant" id={restaurant.res_id}>
-            <img src={restaurant.res_logo} alt="RESTAURANT LOGO"/>
-            <div className="info">
-              <div className="infoB">
-                <p className="n">{restaurant.res_name}</p>
-                <p className="l">{restaurant.res_location}</p>
-              </div>
-              <div className="r">
-                <FontAwesomeIcon className="fa-icon" icon={faThumbsUp} onClick={handleLike}/> {likes}
-              </div>
-            </div>
+    <Link to={`/restaurantPage/${restaurant.res_id}`}>
+      <div className="restaurant" id={restaurant.res_id}>
+        <img src={restaurant.res_logo} alt="RESTAURANT LOGO"/>
+        <div className="info">
+          <div className="infoB">
+            <p className="n">{restaurant.res_name}</p>
+            <p className="l">{restaurant.res_location}</p>
           </div>
-        </Link>
+          <div className="r">
+            <FontAwesomeIcon className="fa-icon" icon={faThumbsUp} onClick={handleLike}/> {likes}
+          </div>
+        </div>
+      </div>
+    </Link>
   )
 }
 

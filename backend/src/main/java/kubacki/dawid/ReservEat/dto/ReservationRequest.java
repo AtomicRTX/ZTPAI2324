@@ -1,7 +1,5 @@
 package kubacki.dawid.ReservEat.dto;
 
-import kubacki.dawid.ReservEat.models.Restaurant;
-import kubacki.dawid.ReservEat.models.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

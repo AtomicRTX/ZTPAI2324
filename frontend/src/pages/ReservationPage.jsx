@@ -15,8 +15,8 @@ const ReservationPage = () => {
   const [reservations, setReservations] = useState([]);
   const [filteredReservations, setFilteredReservations] = useState([]);
 
-    useEffect(() => {
-      ReservationService.getActualReservations()
+  useEffect(() => {
+    ReservationService.getActualReservations()
       .then(reservationsData => {
         const restaurantPromises = reservationsData.map(reservation => 
           RestaurantService.getRestaurant(reservation.restaurant_id)
@@ -38,17 +38,17 @@ const ReservationPage = () => {
         .catch(error => {
           console.error('Error fetching reservations:', error);
         });
-    }, []);
+  }, []);
 
-    const searchFilter = (inputText) => {
-      if (inputText === '') {
-        setFilteredReservations(reservations);
-        console.log(reservations);
-      } else {
-         const filtered = reservations.filter(reservation => reservation.res_name.toLowerCase().includes(inputText));
-         setFilteredReservations(filtered);
-      }
-    };
+  const searchFilter = (inputText) => {
+    if (inputText === '') {
+      setFilteredReservations(reservations);
+    } 
+    else {
+       const filtered = reservations.filter(reservation => reservation.res_name.toLowerCase().includes(inputText));
+       setFilteredReservations(filtered);
+    }
+  };
 
   return (
     <div className="desktop">

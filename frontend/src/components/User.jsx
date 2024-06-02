@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import '../css/user.css';
@@ -19,7 +19,7 @@ const User = ({user}) => {
     return (
         <Link>
             <div className="userPanel">
-                <img src={user.photo ? user.photo : "https://hub.alfresco.com/legacyfs/online/alfresco/a12790_user-86426-avatar"} alt="User Image" />
+                <img src={user.photo ? user.photo : "https://hub.alfresco.com/legacyfs/online/alfresco/a12790_user-86426-avatar"} alt="" />
                 <div className="info">
                     <div className="infoB">
                         <p className="n">Name: {user.name}</p>

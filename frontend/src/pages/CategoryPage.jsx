@@ -14,25 +14,26 @@ const CategoryPage = () => {
   const [restaurants, setRestaurants] = useState([]);
   const { categoryName } = useParams();
 
-    useEffect(() => {
-      axios.get(`http://localhost:8080/api/v1/restaurant/category?category=${categoryName}`, { headers: authHeader() })
-        .then(response => {
-          setRestaurants(response.data);
-        })
-        .catch(error => {
-          console.error('Error fetching restaurants:', error);
-        });
-    }, []);
+  useEffect(() => {
+    axios.get(`http://localhost:8080/api/v1/restaurant/category?category=${categoryName}`, { headers: authHeader() })
+      .then(response => {
+        setRestaurants(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching restaurants:', error);
+      });
+  }, [categoryName]);
+
   return (
     <div className="desktop">
-        <Navigation />
-       <main className='ma'>
-          <SearchBar />
-          <p className="categories_name">Restaurants fit the criteria</p>
-          <div className='ra'>
-            <RestaurantList restaurants={restaurants} />
-          </div>
-       </main>
+      <Navigation />
+      <main className='ma'>
+        <SearchBar />
+        <p className="categories_name">Matching restaurants</p>
+        <div className='ra'>
+          <RestaurantList restaurants={restaurants} />
+        </div>
+      </main>
     </div>
   )
 }

@@ -1,7 +1,6 @@
 package kubacki.dawid.ReservEat.controllers;
 
 import kubacki.dawid.ReservEat.dto.UserDto;
-import kubacki.dawid.ReservEat.models.User;
 import kubacki.dawid.ReservEat.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,7 @@
 package kubacki.dawid.ReservEat.repository;
 
 import kubacki.dawid.ReservEat.models.Reservation;
+import kubacki.dawid.ReservEat.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,4 +15,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
 
     @Query("SELECT r FROM Reservation r JOIN r.user u WHERE TO_TIMESTAMP(CONCAT(r.date, ' ', r.hour), 'YYYY-MM-DD HH24:MI:SS') < CURRENT_TIMESTAMP AND u.user_id = :user_id")
     List<Reservation> findPastReservations(@Param("user_id") int user_id);
+
+    void deleteByUser(User user);
 }

@@ -33,25 +33,18 @@ INSERT INTO restaurants_categories (category_id, res_id) VALUES
                                                              (2, 5);
 
 INSERT INTO types (name) VALUES
-                             ('Admin'),
-                             ('Zwykły');
+                             ('ADMIN'),
+                             ('USER');
 
 INSERT INTO users (email, name, password, surname) VALUES
-                                                       ('admin@gmail.com', 'Admin', '$2a$10$yfrIrrMSA1bYC8xygT5CSOySzxk7IE7g4szKKvdEv87oxZ1n7N3Au', 'Adminowski'),
-                                                       ('dawid.kowalski@gmail.com', 'Dawid', '$2a$10$z/4b1mAiFfr8IaEKj0quluZn9OdbcbfLKtc198Czn9HiM/KjU3PSe', 'Kowalski'),
-                                                       ('anna.nowak@gmail.com', 'Anna', '$2a$10$bamhHmGppUfCJIrmV4xu2Om8FnfCO9r62SAz0RDOiIaVUsrNCvkNG', 'Nowak');
+                                                       ('admin@gmail.com', 'Admin', '$2a$10$DfdikuGE0AgXrecMgdmwj.5GVHZLyhz1XkAUJYSdo0SBUc7XaR2bC', 'Adminowski'),
+                                                       ('dawid.kowalski@gmail.com', 'Dawid', '$2a$10$DfdikuGE0AgXrecMgdmwj.5GVHZLyhz1XkAUJYSdo0SBUc7XaR2bC', 'Kowalski');
 
 INSERT INTO user_types (type_id, user_id) VALUES
                                               (1, 1),
-                                              (2, 2),
-                                              (2, 3);
+                                              (2, 2);
 
 INSERT INTO reservation (date, hour, number_of_people, res_id, user_id) VALUES
                                                                             ('2024-05-15', '18:30:00', 4, 1, 2),
-                                                                            ('2024-05-16', '19:00:00', 3, 2, 3),
-                                                                            ('2024-05-17', '20:00:00', 5, 3, 3);
-
-INSERT INTO notifications (reserv_id, user_id, message) VALUES
-                                                            (1, 2, 'Twoja rezerwacja została potwierdzona przez restaurację.'),
-                                                            (2, 3, 'Twoja rezerwacja została potwierdzona przez restaurację.'),
-                                                            (3, 3, 'Twoja rezerwacja została potwierdzona przez restaurację.');
+                                                                            ('2024-05-16', '19:00:00', 3, 2, 2),
+                                                                            ('2024-05-17', '20:00:00', 5, 3, 2);

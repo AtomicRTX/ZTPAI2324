@@ -10,28 +10,27 @@ import '../css/pages.css';
 import restaurantService from '../services/restaurant.service';
 
 const HomePage = () => {
-    const [restaurants, setRestaurants] = useState([]);
-    const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+  const [restaurants, setRestaurants] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
-    useEffect(() => {
-      restaurantService.getBestRestaurants()
-        .then(data => {
-          setRestaurants(data);
-          setFilteredRestaurants(data);
-        })
-        .catch(error => console.error('Error:', error));
-    }, []);
+  useEffect(() => {
+    restaurantService.getBestRestaurants()
+      .then(data => {
+        setRestaurants(data);
+        setFilteredRestaurants(data);
+      })
+      .catch(error => console.error('Error:', error));
+  }, []);
 
-    const searchFilter = (inputText) => {
-      if (inputText === '') {
-        setFilteredRestaurants(restaurants);
-      }
-      else{
-        const filtered = restaurants.filter(restaurant => restaurant.res_name.toLowerCase().includes(inputText));
-        console.log(filtered);
-        setFilteredRestaurants(filtered);
-      }
+  const searchFilter = (inputText) => {
+    if (inputText === '') {
+      setFilteredRestaurants(restaurants);
     }
+    else{
+      const filtered = restaurants.filter(restaurant => restaurant.res_name.toLowerCase().includes(inputText));
+      setFilteredRestaurants(filtered);
+    }
+  }
 
   return (
     <div className="desktop">

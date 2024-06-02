@@ -12,7 +12,6 @@ import UserService from '../services/user.service';
 import ReservationService from "../services/reservation.service";
 
 const ReservationForm = () => {
-  
     const [user, setUser] = useState({});
     const [restaurant, setRestaurant] = useState({});
     const [selectedNumberOfPeople, setSelectedNumberOfPeople] = useState('2');
@@ -39,7 +38,6 @@ const ReservationForm = () => {
 
     useEffect(() => {
         const selectTime = document.getElementById('selectTime');
-
         const startTime = new Date(`2000-01-01T${restaurant.start_hour}`);
         const endTime = new Date(`2000-01-01T${restaurant.end_hour}`);
 
@@ -104,6 +102,7 @@ const ReservationForm = () => {
                 src={`https://www.google.com/maps/embed?pb=${restaurant.res_map}`}
                 width="90%"
                 height="400"
+                title="Restaurant Location"
                 style={{ border: '0.2em solid black' }}
                 allowFullScreen=""
                 loading="lazy"
@@ -129,6 +128,6 @@ const ReservationForm = () => {
             </div>
         </main>
     );
-  }
+}
 
 export default ReservationForm;

@@ -1,8 +1,10 @@
 package kubacki.dawid.ReservEat.service.impl;
 
+import jakarta.transaction.Transactional;
 import kubacki.dawid.ReservEat.dto.UserDto;
 import kubacki.dawid.ReservEat.mapper.UserMapper;
 import kubacki.dawid.ReservEat.models.User;
+import kubacki.dawid.ReservEat.repository.ReservationRepository;
 import kubacki.dawid.ReservEat.repository.UserRepository;
 import kubacki.dawid.ReservEat.service.UserService;
 import kubacki.dawid.ReservEat.service.TypeEnum;
@@ -19,6 +21,7 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
+    private ReservationRepository reservationRepository;
 
     @Override
     public UserDto getByEmail(String email) {
@@ -50,8 +53,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void deleteUser(int user_id) {
         User user = userRepository.findById(user_id).orElseThrow(() -> new RuntimeException("User not found."));
+        reservationRepository.deleteByUser(user);
         userRepository.delete(user);
     }
 }

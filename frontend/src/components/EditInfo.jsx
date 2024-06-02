@@ -9,49 +9,44 @@ import '../css/editInfo.css';
 import UserService from '../services/user.service';
 
 const EditInfo = () => {
-  
-    const [user, setUser] = useState({});
-    const navigate = useNavigate();
-    const [message, setMessage] = useState('');
 
-    useEffect(() => {
-        UserService.getUser()
-            .then(data => setUser(data))
-            .catch(error => console.error('Error:', error));
-    }, []);
+  const [user, setUser] = useState({});
+  const navigate = useNavigate();
+  const [message, setMessage] = useState('');
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setUser(prevState => ({
-          ...prevState,
-          [name]: value
-        }));
-    };
+  useEffect(() => {
+    UserService.getUser()
+      .then(data => setUser(data))
+      .catch(error => console.error('Error:', error));
+  }, []);
 
-    const handleEdit = (e) => {
-        e.preventDefault();
-        setMessage('');
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUser(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
 
-        UserService.updateUser(user.name, user.surname, user.photo, user.phone)
-        .then(response => {
-            setMessage(`Update sucessful.\n`);
-            setTimeout(() => {
-                navigate('/profilePage');
-            }, 2000);
-          })
-          .catch(error => {
-            const resMessage =
-              (error.response &&
-                error.response.data &&
-                error.response.data.message) ||
-              error.message ||
-              error.toString();
-            setMessage(`Update failed. Details: Error: ${resMessage}`);
-          });
-      }
+  const handleEdit = (e) => {
+    e.preventDefault();
+    setMessage('');
+
+    UserService.updateUser(user.name, user.surname, user.photo, user.phone)
+      .then(response => {
+        setMessage(`Update sucessful.\n`);
+        setTimeout(() => {
+          navigate('/profilePage');
+        }, 2000);
+      })
+      .catch(error => {
+        const resMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+        setMessage(`Update failed. Error: ${resMessage}`);
+      });
+  }
+
   return (
     <div className="edit">
-      
       <div className="basicInformation">
         <Form onSubmit={handleEdit} className='formProfile'>
         <div className="data">
